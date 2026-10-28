@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacto | ROYAL ESSENCE</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="js/main.js" defer></script>
+</head>
+<body class="pagina-contacto">
+
+<header>
+    <img src="logo.png" alt="Logo Royal Essence" class="logo-img">
+        <h2 class="slogan">TU AROMA <span>TU PRESENCIA</span></h2>
+    <nav>
+        <a href="index.html">Inicio</a>
+        <a href="productos.html">Productos</a>
+        <a href="servicios.html">Servicios</a>
+        <a href="quienes-somos.html">Quiénes somos</a>
+        <a href="contacto.html"class="activo">Contacto</a>
+        <a href="ubicacion.html">Ubicación</a>
+        <a href="comentarios.html">Comentarios</a>
+       
+    </nav>
+</header>
+
+<section class="titulo-pagina">
+    <h1>Contáctanos</h1>
+    <p>Estamos para ayudarte a encontrar tu fragancia.</p>
+</section>
+
+<main class="contenedor dos-columnas">
+    <section class="panel">
+        <h2>Información de contacto</h2>
+        <p><strong>Administrador:</strong> Mateo Vergara Ortiz</p>
+        <p><strong>Correo:</strong>
+            <a href="mailto:vergaraortizmateo@gmail.com">
+                vergaraortizmateo@gmail.com
+            </a>
+        </p>
+        <p><strong>Teléfono:</strong>
+            <a href="tel:+573122196336">312 219 6336</a>
+        </p>
+        <p><strong>Ciudad:</strong> Medellín, Colombia (referencia general).</p>
+        <p>Consulta los productos o envíanos tus preguntas.</p>
+    </section>
+        <form class="formulario" id="formContacto" action="https://formsubmit.co/5d25ccbbb97f4a97e4144baae8c2b093" method="POST">
+        <input type="hidden" name="_subject" value="Nuevo pedido ROYAL ESSENCE">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_template" value="table">
+        <h2>Formulario de contacto</h2>
+       
+
+        <label>
+    Nombre:
+    <input type="text" name="nombre" placeholder="ej: juan camilo" required>
+</label>
+
+<label>
+    Apellidos:
+    <input type="text" name="apellidos" placeholder="ej: ortiz perez" required>
+</label>
+
+<label>
+    Fecha de nacimiento:
+    <input type="date" name="fecha_nacimiento" min="1920-01-01" max="2025-12-31" value="2000-01-01" required>
+</label>
+
+<label>
+    Edad:
+    <input type="number" name="edad" placeholder="ej: 25" required>
+</label>
+
+<label>
+    Dirección de domicilio:
+    <input type="text" name="direccion" placeholder="ej: cra 50 # 30-10, itagüí" required>
+</label>
+
+<label>
+    Correo electrónico:
+    <input type="email" name="correo" placeholder="ej: ejemplo@gmail.com" required>
+</label>
+
+<label>
+    Número telefónico:
+    <input type="tel" name="telefono" placeholder="+57 0000000000" required>
+</label>
+
+<label>
+    Mensaje:
+    <textarea name="mensaje" maxlength="100" placeholder="mensaje máximo 100 caracteres" required></textarea>
+</label>
+
+        <p><span id="contador">0</span>/100 caracteres</p>
+
+        <button class="boton" type="submit">Enviar mensaje</button>
+
+        <p class="mensaje" id="resultadoContacto" aria-live="polite"></p>
+    </form>
+</main>
+
+<footer>
+    <p>ROYAL ESSENCE | Atención al cliente</p>
+</footer>
+
+<script>
+const form = document.getElementById('formContacto');
+
+form.addEventListener('submit', function(e) {
+  e.preventDefault();
+
+  let datos = new FormData(form);
+  let textoPlano = `*NUEVO PEDIDO ROYAL ESSENCE*%0A%0A`;
+
+  for (let [nombre, valor] of datos.entries()) {
+    if (nombre.startsWith('_')) continue;
+    if (valor.toString().trim() === '') continue;
+    textoPlano += `*${nombre}:* ${valor}\n`;
+  }
+
+  // Codificamos TODO para que llegue dirección, correo con @, y mensaje completo
+  let urlWpp = `https://wa.me/573122196336?text=${encodeURIComponent(textoPlano)}`;
+  window.open(urlWpp, '_blank');
+
+  // Envía al correo vergaraortizmateo@gmail.com
+  setTimeout(() => {
+    fetch(form.action, {
+      method: 'POST',
+      body: datos,
+      headers: { 'Accept': 'application/json' }
+    }).then(() => {
+      alert('✅ Pedido enviado a tu correo y WhatsApp');
+      form.reset();
+      document.getElementById('contador').textContent = '0';
+    });
+  }, 800);
+});
+
+// Tu contador de 100 caracteres
+const mensaje = document.querySelector('textarea[name="mensaje"]');
+const contador = document.getElementById('contador');
+if(mensaje){
+  mensaje.addEventListener('input', () => {
+    contador.textContent = mensaje.value.length;
+  });
+}
+</script>
+
+</body>
+</html>

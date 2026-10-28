@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comentarios | ROYAL ESSENCE</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="js/main.js" defer></script>
+</head>
+<body class="pagina-comentarios">
+
+<header>
+    <img src="logo.png" alt="Logo Royal Essence" class="logo-img">
+        <h2 class="slogan">TU AROMA <span>TU PRESENCIA</span></h2>
+    <nav>
+        <a href="index.html">Inicio</a>
+        <a href="productos.html">Productos</a>
+        <a href="servicios.html">Servicios</a>
+        <a href="quienes-somos.html">Quiénes somos</a>
+        <a href="contacto.html">Contacto</a>
+        <a href="ubicacion.html">Ubicación</a>
+        <a href="comentarios.html" class="activo">Comentarios</a>
+        
+    </nav>
+</header>
+
+<section class="titulo-pagina">
+    <h1>Comentarios</h1>
+    <p>Tu opinión es importante para nosotros.</p>
+</section>
+
+<main class="contenedor dos-columnas">
+    <form class="formulario" id="formComentarios">
+        <h2>Escribe tu comentario</h2>
+
+        <label>
+            Tu nombre:
+            <input type="text" name="nombre" maxlength="60" required placeholder="tu nombre">
+        </label>
+
+        <label>
+            Comentario:
+           <textarea name="comentario" maxlength="100" required placeholder="comentario maximo 100 caracteres"></textarea>
+        </label>
+
+        <button class="boton" type="submit">Publicar comentario</button>
+
+        <p class="mensaje" id="resultadoComentario" aria-live="polite"></p>
+        <p>Máximo 100 caracteres por comentario.</p>
+    </form>
+
+    <section class="panel">
+        <h2>Opiniones de los visitantes</h2>
+        <div id="listaComentarios">
+            <p>Todavía no hay comentarios.</p>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <p>ROYAL ESSENCE agradece tu opinión.</p>
+</footer>
+
+</body>
+</html>
